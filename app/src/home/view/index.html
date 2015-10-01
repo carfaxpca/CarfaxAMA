@@ -1,57 +1,49 @@
-<div ng-controller="HomeController as hc">
+<div>
   <div flex layout="column" tabIndex="-1" role="main" class="md-whiteframe-z2" layout-fill>
   <md-toolbar layout="row" class="md-whiteframe-z1">
-    <!-- <md-button class="menu" hide-gt-sm ng-click="ul.toggleList()" aria-label="Show User List">
-      <md-icon md-svg-icon="menu" ></md-icon>
-    </md-button> -->
     <h1>CARFAX Ask Me Anything</h1>
   </md-toolbar>
 
   <md-content flex id="content">
-      <!-- <md-icon md-svg-icon="{{ul.selected.avatar}}" class="avatar"></md-icon>
-      <h2>{{ul.selected.name}}</h2>
-      <p>{{ul.selected.content}}</p>
-
-      <md-button class="contact" md-no-ink ng-click="ul.showContactOptions($event)" aria-label="Contact User">
-        <md-tooltip>Contact {{ ul.selected.name }}</md-tooltip>
-        <md-icon md-svg-icon="share"></md-icon>
-      </md-button> -->
       <md-input-container>
         <label>Search for people with:</label>
         <input type="text" ng-model="query" required>
       </md-input-container>
-      <md-button class="md-raised md-primary" ng-click="hc.search()">Primary</md-button>
+      <md-button class="md-raised md-primary" ng-click="search()">Primary</md-button>
       <div layout="row">
-        <h2>Look who we found:</h2>
+        <h2 ng-show="hc.matchingEmployees">Look who we found:</h2>
       </div>
-      <div layout="row">
-        <md-card style="text-align: center" ng-repeat="employee in hc.matchingEmployees">
-         <md-card-content>
+      <div flex offset="33">
+      </div>
+      <div layout="row" flex>
+        <md-card style="text-align: center" ng-repeat="employee in matchingEmployees">
+         <md-card-content class="md-padding">
            <div layout="row">
-             <img ng-src="{{employee._source.image}}" class="avatar"></md-icon>
+             <img ng-src="{{employee._source.image}}" class="avatar"></img>
+             <h2>{{employee._source.name}}</h2>
            </div>
-           <h2>{{employee._source.name}}</h2>
            <div layout="row">
              <md-list>
-               <md-list-item class="md-2-line">
+               <md-list-item class="md-3-line">
                  <div class="md-list-item-text" layout="column">
                    <h3>Strengths</h3>
-                   <p ng-repeat="strength in employee._source.strengths">{{strength.name}}</p>
+                   <p ng-repeat="strength in employee._source.strengths | limitTo:5">{{strength.name}}</p>
                  </div>
                </md-list-item>
              </md-list>
              <md-list>
-               <md-list-item class="md-2-line">
+               <md-list-item class="md-3-line">
                  <div class="md-list-item-text" layout="column">
                    <h3>Skills</h3>
-                   <p ng-repeat="skill in employee._source.skills">{{skill.name}}</p>
+                   <p ng-repeat="skill in employee._source.skills | limitTo:5">{{skill.name}}</p>
                  </div>
                </md-list-item>
              </md-list>
           </div>
          </md-card-content>
          <md-card-footer>
-           PCA
+           <h4>{{employee._source.team}}</h4>
+           <p>{{employee._source.role}}</p>
          </md-card-footer>
         </md-card>
       </md-content>
