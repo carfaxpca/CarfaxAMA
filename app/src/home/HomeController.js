@@ -4,6 +4,7 @@
        .module('home', ['ngRoute'])
        .controller('HomeController', [
          '$http',
+         'userService',
           HomeController
        ])
        .config(['$routeProvider', function($routeProvider) {
@@ -19,16 +20,16 @@
    * @param avatarsService
    * @constructor
    */
-  function HomeController($http) {
+  function HomeController($http, userService) {
     var self = this;
 
     self.matchingEmployees = [];
 
     self.search = function(){
-      console.log("am i doing anything");
-      $http.get('http://ess01aa01a.bat.ess.alpha.a.cdc.cfx:9200/people/_search?q=java').
-        then(function(results){
-            self.matchingEmployees = results.data.hits.hits;
+      userService
+        .loadAllUsers()
+        .then( function( users ) {
+              self.matchingEmployees = users;
         });
     };
   }
