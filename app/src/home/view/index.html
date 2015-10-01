@@ -1,4 +1,5 @@
-<div flex layout="column" tabIndex="-1" role="main" class="md-whiteframe-z2" layout-fill>
+<div ng-controller="HomeController as hc">
+  <div flex layout="column" tabIndex="-1" role="main" class="md-whiteframe-z2" layout-fill>
   <md-toolbar layout="row" class="md-whiteframe-z1">
     <!-- <md-button class="menu" hide-gt-sm ng-click="ul.toggleList()" aria-label="Show User List">
       <md-icon md-svg-icon="menu" ></md-icon>
@@ -19,21 +20,23 @@
         <label>Search for people with:</label>
         <input type="text" ng-model="query" required>
       </md-input-container>
+      <md-button class="md-raised md-primary" ng-click="hc.search()">Primary</md-button>
       <div layout="row">
         <h2>Look who we found:</h2>
       </div>
       <div layout="row">
-        <md-card style="text-align: center">
-         <md-icon md-svg-icon="assets/svg/avatar-1.svg" class="avatar"></md-icon>
+        <md-card style="text-align: center" ng-repeat="employee in hc.matchingEmployees">
          <md-card-content>
-           <h2>Todd Schonhardt</h2>
+           <div layout="row">
+             <img ng-src="{{employee._source.image}}" class="avatar"></md-icon>
+           </div>
+           <h2>{{employee._source.name}}</h2>
            <div layout="row">
              <md-list>
                <md-list-item class="md-2-line">
                  <div class="md-list-item-text" layout="column">
                    <h3>Strengths</h3>
-                   <p>Activator</p>
-                   <p>Learner</p>
+                   <p ng-repeat="strength in employee._source.strengths">{{strength.name}}</p>
                  </div>
                </md-list-item>
              </md-list>
@@ -41,8 +44,7 @@
                <md-list-item class="md-2-line">
                  <div class="md-list-item-text" layout="column">
                    <h3>Skills</h3>
-                   <p>Java</p>
-                   <p>Angular</p>
+                   <p ng-repeat="skill in employee._source.skills">{{skill.name}}</p>
                  </div>
                </md-list-item>
              </md-list>
@@ -54,4 +56,5 @@
         </md-card>
       </md-content>
     </div>
+</div>
 </div>
