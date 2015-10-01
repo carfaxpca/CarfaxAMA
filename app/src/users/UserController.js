@@ -3,12 +3,13 @@
   angular
        .module('users', ['ngRoute'])
        .controller('UserController', [
-          'userService', '$mdSidenav', '$mdBottomSheet', '$log', '$q',
+          'userService', '$mdSidenav', '$mdBottomSheet', '$log', '$q', '$routeParams',
           UserController
        ])
        .config(['$routeProvider', function($routeProvider) {
         $routeProvider
-            .when('/profile', {templateUrl: 'src/users/view/profile.html', controller: 'UserController'});
+            .when('/profile', {templateUrl: 'src/users/view/profile.html', controller: 'UserController as ul'})
+            .when('/profile/:id', {templateUrl: 'src/users/view/profile.html', controller: 'UserController as ul'});
        }]);
 
 
@@ -19,7 +20,7 @@
    * @param avatarsService
    * @constructor
    */
-  function UserController( userService, $mdSidenav, $mdBottomSheet, $log, $q) {
+  function UserController( userService, $mdSidenav, $mdBottomSheet, $log, $q, $routeParams) {
     var self = this;
 
     self.selected     = null;
@@ -34,7 +35,11 @@
           .loadAllUsers()
           .then( function( users ) {
             self.users    = [].concat(users);
-            self.selected = users[0];
+            if($routeParams.id !== undefined){
+              self.selected = users[$routeParams.id];
+            } else {
+              self.selected = users[0];
+            }
           });
 
     // *********************************

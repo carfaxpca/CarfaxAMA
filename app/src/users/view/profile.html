@@ -1,1 +1,35 @@
-<h1>PROFILE PAGE</h1>
+<div flex layout="row" tabIndex="-1" role="main" layout-padding>
+
+  <md-content flex="80" offset="10" style="border:solid #ccc 8px;">
+
+    <div flex layout="row">
+      <div flex="40">
+        <md-content flex id="content">
+          <img ng-src="assets/headshots/{{ul.selected.headshot}}.jpg" layout-fill/>
+        </md-content>
+      </div>
+
+      <div flex="60">
+        <div flex id="content">
+
+          <md-toolbar layout="row" class="md-whiteframe-z1">
+            <md-button class="menu" hide-gt-sm ng-click="ul.toggleList()" aria-label="Show User List">
+              <md-icon md-svg-icon="menu" ></md-icon>
+            </md-button>
+            <h1>{{ul.selected.name}}</h1>
+          </md-toolbar>
+
+          <p><strong>Team:</strong> {{ul.selected.team}}</p>
+          <p><strong>Skills:</strong> <span ng-repeat="skill in ul.selected.skills">{{skill}}{{$last ? '' : ', '}}</span></p>
+          <p><strong>Strengths:</strong> <span ng-repeat="strength in ul.selected.strengths">{{strength}}{{$last ? '' : ', '}}</span></p>
+          <p><strong>Quote:</strong> {{ul.selected.content}}</p>
+
+        </div>
+      </div>
+    </div>
+
+  </md-content>
+
+
+
+</div>
