@@ -1,11 +1,16 @@
 (function(){
 
   angular
-       .module('users')
+       .module('users', ['ngRoute'])
        .controller('UserController', [
           'userService', '$mdSidenav', '$mdBottomSheet', '$log', '$q',
           UserController
-       ]);
+       ])
+       .config(['$routeProvider', function($routeProvider) {
+        $routeProvider
+            .when('/profile', {templateUrl: 'src/users/view/profile.html', controller: 'UserController'});
+       }]);
+
 
   /**
    * Main Controller for the Angular Material Starter App
