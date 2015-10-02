@@ -31,16 +31,23 @@
 
     // Load all registered users
 
-    userService
-          .loadAllUsers()
-          .then( function( users ) {
-            self.users    = users;
-            if($routeParams.id !== undefined){
-              self.selected = users[$routeParams.id];
-            } else {
-              self.selected = users[0];
-            }
-          });
+    // userService.search("java")
+    //   .then(function(results){
+    //     self.users = results.data.hits.hits;
+    //     if($routeParams.id !== undefined){
+    //       self.selected = users[$routeParams.id];
+    //     } else {
+    //       self.selected = users[0];
+    //     }
+    //   })
+
+      userService.search($routeParams.id)
+        .then(function(results){
+          var users = results.data.hits.hits;
+          self.selected = users[0]._source;
+          console.log("selected", self.selected);
+        });
+
 
     // *********************************
     // Internal methods
