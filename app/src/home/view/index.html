@@ -18,7 +18,7 @@
         <div flex offset="33">
         </div>
         <div layout="row" flex layout-wrap>
-          <md-card style="width: 350px; height: 350px;" ng-repeat="employee in matchingEmployees" ng-click="openEmployee(employee._source.name)">
+          <md-card style="width: 350px; height: 350px;" ng-repeat="employee in matchingEmployees" ng-click="openEmployee(employee._id)">
            <md-card-content>
              <div layout="row">
                <md-list-item class="md-2-line">
@@ -34,7 +34,7 @@
                  <md-list-item class="md-1-line">
                    <div class="md-list-item-text">
                      <h3>Strengths</h3>
-                     <span ng-repeat="strength in employee._source.strengths | limitTo:5">{{strength.name}} </span>
+                     <span ng-repeat="strength in employee._source.strengths | limitTo:5">{{strength.name}}{{$last?'':', '}}</span>
                    </div>
                  </md-list-item>
                </md-list>
@@ -44,7 +44,7 @@
                 <md-list-item class="md-1-line">
                   <div class="md-list-item-text">
                     <h3>Skills</h3>
-                    <span ng-repeat="skill in employee._source.skills | limitTo:5">{{skill.name}} </span>
+                    <span ng-repeat="skill in employee._source.skills | limitTo:5">{{skill.name}}{{$last?'':', '}}</span>
                   </div>
                 </md-list-item>
               </md-list>

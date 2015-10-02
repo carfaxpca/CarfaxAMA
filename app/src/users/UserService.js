@@ -17,10 +17,12 @@
     var users = {};
 
     service.search = function(query){
-      return $http.get('http://ess01aa01a.bat.ess.alpha.a.cdc.cfx:9200/people/_search?q='+query)
+      return $http.get('http://ess01aa01a.bat.ess.alpha.a.cdc.cfx:9200/people/_search?q='+query);
     }
 
-    service.getUser
+    service.getUser = function(id) {
+      return $http.get('http://ess01aa01a.bat.ess.alpha.a.cdc.cfx:9200/people/person/'+id);
+    }
 
     return service;
   }

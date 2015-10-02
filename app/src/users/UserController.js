@@ -32,10 +32,9 @@
 
     // if($routeParams)
 
-    userService.search($routeParams.id)
+    userService.getUser($routeParams.id)
       .then(function(results){
-        var users = results.data.hits.hits;
-        self.selected = users[0]._source;
+        self.selected = results.data._source;
       });
 
 
