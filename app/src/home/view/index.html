@@ -29,7 +29,7 @@
                </md-list-item>
              </div>
              <div layout="row">
-               <md-list ng-show="employee._source.strengths">
+               <md-list ng-show="employee._source.strengths.length">
                  <md-list-item class="md-1-line">
                    <div class="md-list-item-text">
                      <h3>Strengths</h3>
@@ -39,7 +39,7 @@
                </md-list>
             </div>
             <div layout="row">
-              <md-list ng-show="employee._source.skills">
+              <md-list ng-show="employee._source.skills.length">
                 <md-list-item class="md-1-line">
                   <div class="md-list-item-text">
                     <h3>Skills</h3>
