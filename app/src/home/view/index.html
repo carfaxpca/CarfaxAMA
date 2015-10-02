@@ -11,7 +11,7 @@
           <input type="text" ng-model="query" required>
         </md-input-container>
         <md-button class="md-raised md-primary" ng-click="search()" style="color:white">Search</md-button>
-        <div layout="row">
+        <div layout="row" ng-show="matchingEmployees">
           <h2 ng-show="matchingEmployees.length">Look who we found:</h2>
           <h2 ng-hide="matchingEmployees.length">Sorry, we didn't find any employees that match your search :(</h2>
         </div>
