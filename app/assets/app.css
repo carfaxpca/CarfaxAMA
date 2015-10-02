@@ -140,3 +140,7 @@ span.numbers {
 md-chips .md-chips {
   box-shadow:none;
 }
+
+[ng-click]{
+  cursor: pointer;
+}

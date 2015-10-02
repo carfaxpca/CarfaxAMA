@@ -37,9 +37,8 @@
         self.selected = results.data._source;
       });
 
-      self.keepSearching = function(query){
-        console.log(query);
-        $location.path("/"+query);
+      self.keepSearching = function(queryString){
+        $location.path("/"+queryString);
       }
 
     function updateUser(){
