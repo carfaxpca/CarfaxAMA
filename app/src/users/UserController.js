@@ -3,7 +3,7 @@
   angular
        .module('users', ['ngRoute'])
        .controller('UserController', [
-          'userService', '$mdSidenav', '$mdBottomSheet', '$log', '$q', '$routeParams',
+          'userService', '$mdSidenav', '$mdBottomSheet', '$log', '$q', '$routeParams', '$location',
           UserController
        ])
        .config(['$routeProvider', function($routeProvider) {
@@ -20,7 +20,7 @@
    * @param avatarsService
    * @constructor
    */
-  function UserController( userService, $mdSidenav, $mdBottomSheet, $log, $q, $routeParams) {
+  function UserController( userService, $mdSidenav, $mdBottomSheet, $log, $q, $routeParams, $location) {
     var self = this;
 
     self.selected     = null;
@@ -37,7 +37,17 @@
         self.selected = results.data._source;
       });
 
+      self.keepSearching = function(query){
+        console.log(query);
+        $location.path("/"+query);
+      }
 
+    function updateUser(){
+      userService.update()
+        .then(function(){
+          //do something
+        })
+    }
     // *********************************
     // Internal methods
     // *********************************

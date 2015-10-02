@@ -18,14 +18,14 @@
 
             <div flex="80" layout="column">
               <div>
-                <h2>{{ul.selected.team}} Team</h2>
+                <h2 ng-click="ul.keepSearching(ul.selected.team)">{{ul.selected.team}} Team</h2>
               </div>
 
               <div ng-show="ul.selected.languages.length">
                 <h3>Languages</h3>
                 <md-chips ng-model="ul.selected.languages" readonly="true">
                   <md-chip-template>
-                    <strong>{{$chip.name}}</strong>
+                    <strong ng-click="ul.keepSearching($chip.name)">{{$chip.name}}</strong>
                     <em>({{$chip.credibility}})</em>
                   </md-chip-template>
                 </md-chips>
@@ -35,7 +35,7 @@
                 <h3>Skills</h3>
                 <md-chips ng-model="ul.selected.skills" readonly="true">
                   <md-chip-template>
-                    <strong>{{$chip.name}}</strong>
+                    <strong ng-click="ul.keepSearching($chip.name)">{{$chip.name}}</strong>
                     <em>({{$chip.credibility}})</em>
                   </md-chip-template>
                 </md-chips>
@@ -54,7 +54,7 @@
               <md-list-item class="md-1-line" ng-repeat="str in ul.selected.strengths | orderBy: 'order'">
                 <span class="md-avatar numbers md-accent">{{str.order}}</span>
                 <div class="md-list-item-text" layout="column">
-                  <h3>{{str.name}}</h3>
+                  <h3 ng-click="ul.keepSearching(str.name)">{{str.name}}</h3>
                 </div>
               </md-list-item>
             </md-list>
