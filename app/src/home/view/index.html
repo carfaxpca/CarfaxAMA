@@ -14,13 +14,14 @@
 
         <md-button class="md-raised md-primary" ng-click="search()" style="color:white">Search</md-button>
       </form>
+        <h1 ng-show="query === 'jerk'">We don't allow jerks at CARFAX!</h1>
         <div layout="row" ng-show="matchingEmployees">
           <h2 ng-show="matchingEmployees.length">Look who we found:</h2>
           <h2 ng-hide="matchingEmployees.length">Sorry, we didn't find any employees that match your search :(</h2>
         </div>
         <div flex offset="33">
         </div>
-        <div layout="row" flex layout-wrap>
+        <div layout="row" flex layout-wrap ng-hide="query === 'jerk'">
           <md-card flex="30" style="height: 350px;" ng-repeat="employee in matchingEmployees" ng-click="openEmployee(employee._id)">
            <md-card-content>
              <div layout="row">
