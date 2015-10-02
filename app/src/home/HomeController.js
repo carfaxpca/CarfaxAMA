@@ -3,6 +3,7 @@
   angular
        .module('home', ['ngRoute'])
        .controller('HomeController', [
+         '$scope',
          '$http',
          'userService',
           HomeController
@@ -20,17 +21,12 @@
    * @param avatarsService
    * @constructor
    */
-  function HomeController($http, userService) {
-    var self = this;
-
-    self.matchingEmployees = [];
-
-    self.search = function(){
-      userService
-        .loadAllUsers()
-        .then( function( users ) {
-              self.matchingEmployees = users;
-        });
+  function HomeController($scope, $http, userService) {
+    $scope.search = function(){
+      $scope.matchingEmployees = userService.search($scope.query).
+        then(function(results){
+          $scope.matchingEmployees = results.data.hits.hits;
+        })
     };
   }
 

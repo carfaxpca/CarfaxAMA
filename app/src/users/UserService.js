@@ -13,19 +13,14 @@
    * @constructor
    */
   function UserService($q, $http){
+    var service = {};
     var users = {};
-    $http.get('http://ess01aa01a.bat.ess.alpha.a.cdc.cfx:9200/people/_search?q=java').
-      then(function(results){
-          users = results.data.hits.hits;
-      });
 
-    // Promise-based API
-    return {
-      loadAllUsers : function() {
-        // Simulate async nature of real remote calls
-        return $q.when(users);
-      }
-    };
+    service.search = function(query){
+      return $http.get('http://ess01aa01a.bat.ess.alpha.a.cdc.cfx:9200/people/_search?q='+query)
+    }
+
+    return service;
   }
 
 })();
