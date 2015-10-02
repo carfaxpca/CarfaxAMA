@@ -5,6 +5,7 @@
        .controller('HomeController', [
          '$scope',
          '$http',
+         '$location',
          'userService',
           HomeController
        ])
@@ -21,13 +22,17 @@
    * @param avatarsService
    * @constructor
    */
-  function HomeController($scope, $http, userService) {
+  function HomeController($scope, $http, $location, userService) {
     $scope.search = function(){
       $scope.matchingEmployees = userService.search($scope.query).
         then(function(results){
           $scope.matchingEmployees = results.data.hits.hits;
         })
     };
+
+    $scope.openEmployee = function(name){
+      $location.path("/profile/"+name);
+    }
   }
 
 })();

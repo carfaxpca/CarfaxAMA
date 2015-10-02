@@ -16,7 +16,7 @@
       <div flex offset="33">
       </div>
       <div layout="row" flex>
-        <md-card style="text-align: center" ng-repeat="employee in matchingEmployees">
+        <md-card style="text-align: center" ng-repeat="employee in matchingEmployees" ng-click="openEmployee(employee._source.name)">
          <md-card-content class="md-padding">
            <div layout="row">
              <img ng-src="{{employee._source.image}}" class="avatar"></img>
