@@ -1,55 +1,57 @@
-<div>
-  <div flex layout="column" tabIndex="-1" role="main" class="md-whiteframe-z2" layout-fill>
-  <md-toolbar layout="row" class="md-whiteframe-z1">
-    <h1 style="color: white;">CARFAX Ask Me Anything</h1>
-  </md-toolbar>
+<div flex layout="row" tabIndex="-1" role="main" layout-padding>
+  <md-content flex="80" offset="10" class="md-whiteframe-5dp" style="border:solid #ccc 8px;">
+    <div flex layout="column" tabIndex="-1" role="main" layout-fill>
+    <md-toolbar layout="row" class="md-whiteframe-z1">
+      <h1 style="color: white" class="md-display-1">CARFAX Ask Me Anything</h1>
+    </md-toolbar>
 
-  <md-content flex id="content">
-      <md-input-container>
-        <label>Search for people with:</label>
-        <input type="text" ng-model="query" required>
-      </md-input-container>
-      <md-button style="color: white;" class="md-raised md-primary" ng-click="search()">Search</md-button>
-      <div layout="row">
-        <h2 ng-show="hc.matchingEmployees">Look who we found:</h2>
-      </div>
-      <div flex offset="33">
-      </div>
-      <div layout="row" flex layout-wrap>
-        <md-card style="width: 400px; height: 300px;" ng-repeat="employee in matchingEmployees" ng-click="openEmployee(employee._source.name)">
-         <md-card-content>
-           <div layout="row">
-             <md-list-item class="md-2-line">
-               <img ng-src="{{employee._source.image}}" class="avatar"></img>
-               <div class="md-list-item-text" layout="column">
-                 <h3 class="md-headline">{{employee._source.name}}</h2>
-                 <p class="md-subhead">{{employee._source.team}} Team {{employee._source.role}}</p>
-               </div>
-             </md-list-item>
-           </div>
-           <div layout="row">
-             <md-list ng-show="employee._source.strengths">
-               <md-list-item class="md-1-line">
-                 <div class="md-list-item-text">
-                   <h3>Strengths</h3>
-                   <span ng-repeat="strength in employee._source.strengths | limitTo:5">{{strength.name}} </span>
+    <md-content flex id="content">
+        <md-input-container>
+          <label>Search for people with:</label>
+          <input type="text" ng-model="query" required>
+        </md-input-container>
+        <md-button class="md-raised md-primary" ng-click="search()" style="color:white">Search</md-button>
+        <div layout="row">
+          <h2 ng-show="matchingEmployees">Look who we found:</h2>
+        </div>
+        <div flex offset="33">
+        </div>
+        <div layout="row" flex layout-wrap>
+          <md-card style="width: 350px; height: 350px;" ng-repeat="employee in matchingEmployees" ng-click="openEmployee(employee._source.name)">
+           <md-card-content>
+             <div layout="row">
+               <md-list-item class="md-2-line">
+                 <img ng-src="{{employee._source.image}}" class="avatar"></img>
+                 <div class="md-list-item-text" layout="column">
+                   <h3 class="md-headline">{{employee._source.name}}</h2>
+                   <p class="md-subhead">{{employee._source.team}} Team {{employee._source.role}}</p>
                  </div>
                </md-list-item>
-             </md-list>
-          </div>
-          <div layout="row">
-            <md-list ng-show="employee._source.skills">
-              <md-list-item class="md-1-line">
-                <div class="md-list-item-text">
-                  <h3>Skills</h3>
-                  <span ng-repeat="skill in employee._source.skills | limitTo:5">{{skill.name}} </span>
-                </div>
-              </md-list-item>
-            </md-list>
-          </div>
-         </md-card-content>
-        </md-card>
-      </md-content>
+             </div>
+             <div layout="row">
+               <md-list ng-show="employee._source.strengths">
+                 <md-list-item class="md-1-line">
+                   <div class="md-list-item-text">
+                     <h3>Strengths</h3>
+                     <span ng-repeat="strength in employee._source.strengths | limitTo:5">{{strength.name}} </span>
+                   </div>
+                 </md-list-item>
+               </md-list>
+            </div>
+            <div layout="row">
+              <md-list ng-show="employee._source.skills">
+                <md-list-item class="md-1-line">
+                  <div class="md-list-item-text">
+                    <h3>Skills</h3>
+                    <span ng-repeat="skill in employee._source.skills | limitTo:5">{{skill.name}} </span>
+                  </div>
+                </md-list-item>
+              </md-list>
+            </div>
+           </md-card-content>
+          </md-card>
+        </md-content>
+      </div>
     </div>
-</div>
+  </md-content>
 </div>
