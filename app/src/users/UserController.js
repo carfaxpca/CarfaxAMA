@@ -8,8 +8,8 @@
        ])
        .config(['$routeProvider', function($routeProvider) {
         $routeProvider
-            .when('/profile', {templateUrl: 'src/users/view/profile.html', controller: 'UserController as ul'})
-            .when('/profile/:id', {templateUrl: 'src/users/view/profile.html', controller: 'UserController as ul'});
+            .when('/profile/:query/:id', {templateUrl: 'src/users/view/profile.html', controller: 'UserController as ul'})
+            .otherwise('/');
        }]);
 
 
@@ -28,25 +28,15 @@
     self.selectUser   = selectUser;
     self.toggleList   = toggleUsersList;
     self.showContactOptions  = showContactOptions;
+    self.query = $routeParams.query;
 
-    // Load all registered users
+    // if($routeParams)
 
-    // userService.search("java")
-    //   .then(function(results){
-    //     self.users = results.data.hits.hits;
-    //     if($routeParams.id !== undefined){
-    //       self.selected = users[$routeParams.id];
-    //     } else {
-    //       self.selected = users[0];
-    //     }
-    //   })
-
-      userService.search($routeParams.id)
-        .then(function(results){
-          var users = results.data.hits.hits;
-          self.selected = users[0]._source;
-          console.log("selected", self.selected);
-        });
+    userService.search($routeParams.id)
+      .then(function(results){
+        var users = results.data.hits.hits;
+        self.selected = users[0]._source;
+      });
 
 
     // *********************************

@@ -7,11 +7,13 @@
          '$http',
          '$location',
          'userService',
+         '$routeParams',
           HomeController
        ])
        .config(['$routeProvider', function($routeProvider) {
         $routeProvider
-            .when('/', {templateUrl: 'src/home/view/index.html', controller: 'HomeController'});
+            .when('/', {templateUrl: 'src/home/view/index.html', controller: 'HomeController'})
+            .when('/:query', {templateUrl: 'src/home/view/index.html', controller: 'HomeController'});
        }]);
 
 
@@ -22,7 +24,7 @@
    * @param avatarsService
    * @constructor
    */
-  function HomeController($scope, $http, $location, userService) {
+  function HomeController($scope, $http, $location, userService, $routeParams) {
     $scope.search = function(){
       $scope.matchingEmployees = userService.search($scope.query).
         then(function(results){
@@ -31,7 +33,17 @@
     };
 
     $scope.openEmployee = function(name){
-      $location.path("/profile/"+name);
+      $location.path("/profile/"+$scope.query+"/"+name);
+    }
+
+    $scope.query = "beans";
+
+    if($routeParams.query !== undefined) {
+      $scope.query = $routeParams.query;
+      $scope.matchingEmployees = userService.search($scope.query).
+        then(function(results){
+          $scope.matchingEmployees = results.data.hits.hits;
+        })
     }
   }
 

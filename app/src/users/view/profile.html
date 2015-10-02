@@ -1,34 +1,70 @@
 <div flex layout="row" tabIndex="-1" role="main" layout-padding>
+  <md-content flex="70" offset="15" class="md-whiteframe-5dp" style="border:solid #ccc 8px;">
 
-  <md-content flex="80" offset="10" style="border:solid #ccc 8px;">
+    <!-- <div flex layout="row">
+      <div flex="60"> -->
+      <md-toolbar layout="row" class="md-whiteframe-1dp">
+        <md-button class="menu" hide-gt-sm ng-click="ul.toggleList()" aria-label="Show User List">
+          <md-icon md-svg-icon="menu" ></md-icon>
+        </md-button>
+        <h1 class="md-display-1">{{ul.selected.name}}</h1>
+      </md-toolbar>
 
-    <div flex layout="row">
-      <div flex="40">
-        <md-content flex id="content">
-          <img ng-src="{{ul.selected.image}}" class=""></img>
-        </md-content>
-      </div>
-
-      <div flex="60">
         <div flex id="content">
 
-          <md-toolbar layout="row" class="md-whiteframe-z1">
-            <md-button class="menu" hide-gt-sm ng-click="ul.toggleList()" aria-label="Show User List">
-              <md-icon md-svg-icon="menu" ></md-icon>
-            </md-button>
-            <h1>{{ul.selected.name}}</h1>
-          </md-toolbar>
 
-          <p><strong>Team:</strong> {{ul.selected.team}}</p>
-          <p><strong>Skills:</strong> <span ng-repeat="skill in ul.selected.languages">{{skill}}{{$last ? '' : ', '}}</span></p>
-          <p><strong>Strengths:</strong> <span ng-repeat="strength in ul.selected.strengths">{{strength}}{{$last ? '' : ', '}}</span></p>
 
-        </div>
-      </div>
+          <div layout="row">
+
+            <div flex="80" layout="column">
+              <div>
+                <h2>{{ul.selected.team}} Team</h2>
+              </div>
+
+              <div>
+                <h3>Languages</h3>
+                <md-chips ng-model="ul.selected.languages" readonly="true">
+                  <md-chip-template>
+                    <strong>{{$chip.name}}</strong>
+                    <em>({{$chip.credibility}})</em>
+                  </md-chip-template>
+                </md-chips>
+              </div>
+
+              <div>
+                <h3>Skills</h3>
+                <md-chips ng-model="ul.selected.skills" readonly="true">
+                  <md-chip-template>
+                    <strong>{{$chip.name}}</strong>
+                    <em>({{$chip.credibility}})</em>
+                  </md-chip-template>
+                </md-chips>
+              </div>
+            </div>
+
+            <div flex="20" layout-padding>
+              <img ng-src="{{ul.selected.image}}" style="margin-left:auto;"></img>
+            </div>
+
+          </div>
+
+          <h3>Strengths</h3>
+
+          <md-list layout="row">
+            <md-list-item class="md-1-line" ng-repeat="str in ul.selected.strengths | orderBy: 'order'">
+              <span class="md-avatar numbers md-accent">{{str.order}}</span>
+              <div class="md-list-item-text" layout="column">
+                <h3>{{str.name}}</h3>
+              </div>
+            </md-list-item>
+          </md-list>
+
     </div>
 
   </md-content>
 
-
+  <div flex="30">
+    <md-button ng-href="#/{{ul.query}}">Back</md-button>
+  </div>
 
 </div>
