@@ -34,7 +34,7 @@
     userService
           .loadAllUsers()
           .then( function( users ) {
-            self.users    = [].concat(users);
+            self.users    = users;
             if($routeParams.id !== undefined){
               self.selected = users[$routeParams.id];
             } else {
