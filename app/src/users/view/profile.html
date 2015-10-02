@@ -7,7 +7,7 @@
         <md-button class="menu" hide-gt-sm ng-click="ul.toggleList()" aria-label="Show User List">
           <md-icon md-svg-icon="menu" ></md-icon>
         </md-button>
-        <h1 class="md-display-1">{{ul.selected.name}}</h1>
+        <h1 style="color: white;" class="md-display-1">{{ul.selected.name}}</h1>
       </md-toolbar>
 
         <div flex id="content">
@@ -18,24 +18,24 @@
 
             <div flex="80" layout="column">
               <div>
-                <h2>{{ul.selected.team}} Team</h2>
+                <h2 ng-click="ul.keepSearching(ul.selected.team)">{{ul.selected.team}} Team</h2>
               </div>
 
-              <div>
+              <div ng-show="ul.selected.languages.length">
                 <h3>Languages</h3>
                 <md-chips ng-model="ul.selected.languages" readonly="true">
                   <md-chip-template>
-                    <strong>{{$chip.name}}</strong>
+                    <strong ng-click="ul.keepSearching($chip.name)">{{$chip.name}}</strong>
                     <em>({{$chip.credibility}})</em>
                   </md-chip-template>
                 </md-chips>
               </div>
 
-              <div>
+              <div ng-show="ul.selected.skills.length">
                 <h3>Skills</h3>
                 <md-chips ng-model="ul.selected.skills" readonly="true">
                   <md-chip-template>
-                    <strong>{{$chip.name}}</strong>
+                    <strong ng-click="ul.keepSearching($chip.name)">{{$chip.name}}</strong>
                     <em>({{$chip.credibility}})</em>
                   </md-chip-template>
                 </md-chips>
@@ -47,18 +47,18 @@
             </div>
 
           </div>
+          <div ng-show="ul.selected.strengths.length">
+            <h3>Strengths</h3>
 
-          <h3>Strengths</h3>
-
-          <md-list layout="row">
-            <md-list-item class="md-1-line" ng-repeat="str in ul.selected.strengths | orderBy: 'order'">
-              <span class="md-avatar numbers md-accent">{{str.order}}</span>
-              <div class="md-list-item-text" layout="column">
-                <h3>{{str.name}}</h3>
-              </div>
-            </md-list-item>
-          </md-list>
-
+            <md-list layout="row">
+              <md-list-item class="md-1-line" ng-repeat="str in ul.selected.strengths | orderBy: 'order'">
+                <span class="md-avatar numbers md-accent">{{str.order}}</span>
+                <div class="md-list-item-text" layout="column">
+                  <h3 ng-click="ul.keepSearching(str.name)">{{str.name}}</h3>
+                </div>
+              </md-list-item>
+            </md-list>
+          </div>
     </div>
 
   </md-content>

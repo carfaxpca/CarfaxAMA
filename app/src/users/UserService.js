@@ -24,6 +24,12 @@
       return $http.get('http://ess01aa01a.bat.ess.alpha.a.cdc.cfx:9200/people/person/'+id);
     }
 
+    service.update = function(userId){
+      return $http.get('http://ess01aa01a.bat.ess.alpha.a.cdc.cfx:9200/people/person/' + userId)
+    }
+
+    service.getUser
+
     return service;
   }
 
