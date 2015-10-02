@@ -32,6 +32,14 @@
         })
     };
 
+    $scope.all = function(){
+      $scope.query = null;
+      $scope.matchingEmployees = userService.all().
+        then(function(results){
+          $scope.matchingEmployees = results.data.hits.hits;
+        })
+    };
+
     $scope.openEmployee = function(name){
       $location.path("/profile/"+$scope.query+"/"+name);
     }

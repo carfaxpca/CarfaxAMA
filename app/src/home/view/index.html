@@ -9,11 +9,12 @@
       <form ng-submit="search()">
         <md-input-container>
           <label>Search for people with:</label>
-          <input type="text" ng-model="query" required>
+          <input type="text" ng-model="query">
         </md-input-container>
-
-        <md-button class="md-raised md-primary" ng-click="search()" style="color:white">Search</md-button>
       </form>
+      <md-button class="md-raised md-primary" ng-click="search()" style="color:white">Search</md-button>
+      <md-button class="md-raised md-default" ng-click="all()" >All</md-button>
+      
         <h1 ng-show="query === 'jerk'">We don't allow jerks at CARFAX!</h1>
         <div layout="row" ng-show="matchingEmployees">
           <h2 ng-show="matchingEmployees.length">Look who we found:</h2>
