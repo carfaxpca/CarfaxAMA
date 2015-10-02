@@ -36,7 +36,7 @@
       $location.path("/profile/"+$scope.query+"/"+name);
     }
 
-    $scope.query = "beans";
+    // $scope.query = "beans";
 
     if($routeParams.query !== undefined) {
       $scope.query = $routeParams.query;
