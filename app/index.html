@@ -59,7 +59,19 @@
                           .primaryPalette('green')
                           .accentPalette('amber');
 
-              });
+              })
+              .directive('errSrc', function() {
+                return {
+                  link: function(scope, element, attrs) {
+                    var errSrc = './assets/img/NoImage.jpg';
+                    element.bind('error', function() {
+                      if (attrs.src != errSrc) {
+                        attrs.$set('src', errSrc);
+                      }
+                    });
+                  }
+                }
+              });;
 
     </script>
 
